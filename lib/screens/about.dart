@@ -5,14 +5,8 @@ import 'package:http/http.dart' as http;
 import '../api/constants.dart';
 import 'dart:convert';
 import '../utils/lists_shared_prefs.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:developer';
 
-final listsProvider = StateProvider<dynamic>((ref) {
-  return [];
-});
-
-class AboutMovie extends ConsumerStatefulWidget  {
+class AboutMovie extends StatefulWidget  {
   const AboutMovie({
     Key? key,
     required this.movieID,
@@ -29,10 +23,10 @@ class AboutMovie extends ConsumerStatefulWidget  {
   final double movieRating;
 
   @override
-  ConsumerState<AboutMovie> createState() => _AboutMovieState();
+  State<AboutMovie> createState() => _AboutMovieState();
 }
 
-class _AboutMovieState extends ConsumerState<AboutMovie>{
+class _AboutMovieState extends State<AboutMovie>{
   List<String> moviesListed = [];
   List movieCredits = [];
   List fullMovieDetails = [];
@@ -42,15 +36,9 @@ class _AboutMovieState extends ConsumerState<AboutMovie>{
   String castImageUrl = '';
   bool movieListedFlag = false;
 
-  // late final listsProvider = StateProvider<List>((ref) {
-  //   return moviesListed;
-  // });
-
   @override
   void initState() {
     super.initState();
-    // final helloWorld = ref.read(listsProvider);
-    // print(helloWorld);
   }
 
   Future<void> _getMovieCredits() async {
